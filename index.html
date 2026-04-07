@@ -7,21 +7,25 @@
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
+
+  <!-- HEADER -->
   <header class="site-header">
     <div class="logo">
-      <a href="index.html">die Amsel Collective</a>
+      <a href="index.html">
+        <img src="assets/images/logo.png" alt="die Amsel Collective logo" />
+      </a>
     </div>
-
     <nav class="nav">
       <a href="index.html" class="active">Home</a>
       <a href="#about">About us</a>
       <a href="#contact">Contact us</a>
       <a href="#newsletter">Newsletter</a>
-      <a href="gdpr.html">GDPR</a>
     </nav>
   </header>
 
   <main>
+
+    <!-- HERO -->
     <section class="hero">
       <div class="hero-content">
         <h1>Welcome to die Amsel Collective</h1>
@@ -29,69 +33,197 @@
           We provide a safe platform for WOMXN to explore their sexuality and
           conduct self-assessment when they experience pain during or after
           sexual activity. Our services are science-based and designed to
-          improve individuals’ not only sexual but also mental well-being.
+          improve individuals' not only sexual but also mental well-being.
         </p>
-
-        <div class="hero-buttons">
-          <a href="#about" class="btn">About Us</a>
-          <a href="gdpr.html" class="btn btn-secondary">GDPR</a>
+        <div class="hero-icons">
+          <a href="https://instagram.com/" target="_blank" rel="noopener noreferrer" class="icon-link">
+            <svg width="36" height="36" viewBox="0 0 24 24" fill="none"
+              stroke="#d97ab2" stroke-width="1.5" stroke-linecap="round"
+              stroke-linejoin="round">
+              <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
+              <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/>
+              <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/>
+            </svg>
+          </a>
+          <a href="mailto:dieamselcollective@gmail.com" class="icon-link">
+            <svg width="36" height="36" viewBox="0 0 24 24" fill="none"
+              stroke="#d97ab2" stroke-width="1.5" stroke-linecap="round"
+              stroke-linejoin="round">
+              <rect x="2" y="4" width="20" height="16" rx="2"/>
+              <path d="M22 4L12 13 2 4"/>
+            </svg>
+          </a>
+          <a href="#about" class="btn btn-outline">About Us</a>
         </div>
       </div>
     </section>
 
-    <section id="about" class="content-section">
-      <div class="text-block">
-        <h2>About Us - die Amsel Collective</h2>
-        <p>
-          die Amsel Collective consists of individuals who are determined to
-          make life easier for WOMXN. Our team members have specialized in
-          different backgrounds with one common vision: to provide our audience
-          with scientifically accurate and reliable information on sexual pain
-          and well-being.
-        </p>
-        <p>
-          We are constantly improving our content, so feel free to reach out to
-          us if you have questions or suggestions.
-        </p>
-        <p>Looking forward to hear from you!</p>
+    <!-- ABOUT US -->
+    <section id="about" class="about-section">
+      <div class="about-grid">
+        <div class="about-text">
+          <div class="accent-bar"></div>
+          <h2>About Us -<br>die Amsel Collective</h2>
+          <p>
+            die Amsel Collective consists of individuals who are determined to
+            make life easier for WOMXN. Our team members have specialized in
+            different backgrounds with one common vision: to provide our
+            audience with scientifically accurate and reliable information on
+            sexual pain and well-being.
+          </p>
+          <p>
+            We are constantly improving our content, so feel free to reach out
+            to us if you have questions or suggestions.
+          </p>
+          <p>Looking forward to hear from you!</p>
+          <a href="#contact" class="btn btn-outline">Find Out More Now</a>
+        </div>
+        <div class="about-image">
+          <img src="assets/images/flower-orange.jpg" alt="Orange flower" />
+          <p class="photo-credit">Photo by Timothy Dykes on Unsplash</p>
+        </div>
       </div>
     </section>
 
-    <section id="contact" class="content-section">
-      <div class="text-block">
-        <h2>Contact Us</h2>
-        <p>You can contact us via email or social media.</p>
-        <p>
-          Email:
-          <a href="mailto:dieamselcollective@gmail.com">dieamselcollective@gmail.com</a>
-        </p>
-        <p>
-          Instagram:
-          <a href="https://instagram.com/dieamselcollective" target="dieamselcollective" rel="noopener noreferrer">
-            @dieamselcollective
-          </a>
-        </p>
+    <!-- HOW CAN WE HELP -->
+    <section class="help-section">
+      <div class="help-header">
+        <h2>How Can We Help You?</h2>
+        <p>Learn more about the ways we can help you.</p>
+        <a href="#" class="btn btn-outline">Find out more now</a>
+      </div>
+      <div class="help-grid">
+        <div class="help-card">
+          <img src="assets/images/flower-pink.jpg" alt="Sexual Anatomy" />
+          <h3>Sexual Anatomy for All</h3>
+          <p>Scientifically accurate and reliable information on sexual
+            anatomy and functioning.</p>
+        </div>
+        <div class="help-card">
+          <img src="assets/images/hands.jpg" alt="Workshops" />
+          <h3>Workshops and Seminars</h3>
+          <p>Interactive learning opportunities on sexuality and health
+            topics.</p>
+        </div>
+        <div class="help-card">
+          <img src="assets/images/placeholder1.jpg" alt="Self-Diagnostic" />
+          <h3>Self-Diagnostic Tool</h3>
+          <p>Explore your sexual pain through a guided self-diagnostic tool
+            and understand the type of the pain.</p>
+        </div>
+        <div class="help-card">
+          <img src="assets/images/placeholder2.jpg" alt="Pelvic Floor" />
+          <h3>Train Your Pelvic Floor</h3>
+          <p>Learn which type of exercises are suitable for your pain.</p>
+        </div>
+        <div class="help-card">
+          <img src="assets/images/placeholder3.jpg" alt="Validate Pain" />
+          <h3>Validate Your Pain</h3>
+          <p>Learn how to validate and manage your pain through
+            psychological tips.</p>
+        </div>
+        <div class="help-card">
+          <img src="assets/images/placeholder4.jpg" alt="Professionals" />
+          <h3>Connect to Professionals</h3>
+          <p>Personal consultation with professionals.</p>
+        </div>
       </div>
     </section>
 
-    <section id="newsletter" class="content-section">
-      <div class="text-block">
-        <h2>Newsletter</h2>
-        <p>
-          Subscribe to our newsletter to stay updated on our work, resources,
-          and future developments.
-        </p>
-        <p>
-          If you already use a newsletter platform, we can later add a proper
-          signup link or embedded form here.
-        </p>
+    <!-- TESTIMONIALS -->
+    <section class="testimonials-section">
+      <div class="testimonials-grid">
+        <div class="testimonial-card">
+          <p class="quote">"I didn't know that it was something that I could
+            talk about. I feel being heard."</p>
+          <p class="author">Interview Participant (34)</p>
+        </div>
+        <div class="testimonial-card">
+          <p class="quote">"I don't trust the accuracy of the information on
+            the internet. So I would use an online platform which I can
+            trust."</p>
+          <p class="author">Survey Participant (37)</p>
+        </div>
+        <div class="testimonial-card">
+          <p class="quote">"I always thought that pain was normal. I want to
+            be able to have pain free sex."</p>
+          <p class="author">Survey Participant (27)</p>
+        </div>
       </div>
     </section>
+
+    <!-- CONTACT -->
+    <section id="contact" class="contact-section">
+      <h2>Contact Us</h2>
+      <form class="contact-form-wrapper"
+        action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
+
+        <label for="contact-name">Name/Nickname*</label>
+        <input type="text" id="contact-name" name="name" required />
+
+        <label for="contact-message">Questions/ Suggestions/ Dialogues</label>
+        <textarea id="contact-message" name="message" rows="6"></textarea>
+
+        <div class="consent-row">
+          <input type="checkbox" id="contact-consent" required />
+          <label for="contact-consent" class="consent-label">
+            I agree that this data may be stored and processed for the
+            purpose of contacting me. I understand that I can revoke my
+            consent at any time. *
+          </label>
+        </div>
+
+        <p class="required-note">* Please fill in all required fields.</p>
+        <button type="submit" class="btn btn-pink-full">Send</button>
+      </form>
+
+      <p class="contact-email">
+        E-Mail:
+        <a href="mailto:dieamselcollective@gmail.com">
+          dieamselcollective@gmail.com
+        </a>
+      </p>
+    </section>
+
+    <!-- NEWSLETTER -->
+    <section id="newsletter" class="newsletter-section">
+      <h2>Subscribe to Our Newsletter</h2>
+      <form class="newsletter-form-wrapper"
+        action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
+
+        <label for="newsletter-email">
+          Your E-mail to subscribe our Newsletter*
+        </label>
+        <input type="email" id="newsletter-email" name="email" required />
+
+        <div class="consent-row">
+          <input type="checkbox" id="newsletter-consent" required />
+          <label for="newsletter-consent" class="consent-label">
+            I agree that this data may be stored and processed for the
+            purpose of contacting me. I understand that I can revoke my
+            consent at any time.*
+          </label>
+        </div>
+
+        <p class="required-note">*Please fill in all required fields.</p>
+        <button type="submit" class="btn btn-pink-full">Send</button>
+      </form>
+
+      <p class="contact-email">
+        E-Mail:
+        <a href="mailto:dieamselcollective@gmail.com">
+          dieamselcollective@gmail.com
+        </a>
+      </p>
+    </section>
+
   </main>
 
+  <!-- FOOTER -->
   <footer class="site-footer">
-    <p>&copy; 2026 die Amsel Collective. All rights reserved.</p>
-    <p><a href="gdpr.html">Privacy / GDPR Statement</a></p>
+    <p>&copy; Copyright. All rights reserved.</p>
+    <p><a href="gdpr.html">Privacy Policy / GDPR</a></p>
   </footer>
+
 </body>
 </html>
