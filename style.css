@@ -51,8 +51,9 @@ img {
 }
 
 .logo img {
-  height: 80px;
+  height: 100px;
   width: auto;
+  object-fit: contain;
 }
 
 .nav {
@@ -90,6 +91,7 @@ img {
 
 .hero-content {
   max-width: 780px;
+  text-align: left;
 }
 
 .hero h1 {
@@ -97,14 +99,6 @@ img {
   font-weight: 300;
   color: var(--accent);
   margin-bottom: 24px;
-}
-
-.hero p {
-  font-size: 1rem;
-  text-align: left;
-  margin-bottom: 32px;
-  color: var(--text);
-  line-height: 1.8;
 }
 
 .hero-icons {
@@ -216,13 +210,13 @@ img {
   object-fit: cover;
 }
 
-.photo-credit {
+.about-image .photo-credit {
   font-size: 0.75rem;
   color: var(--gray);
   margin-top: 6px;
-  text-align: right;
+  text-align: center;
   font-style: italic;
-}
+}python3 -m http.server 8000
 
 /* ===== HELP SECTION ===== */
 .help-section {
@@ -257,6 +251,9 @@ img {
 
 .help-card {
   text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .help-card img {
@@ -279,6 +276,14 @@ img {
   color: var(--gray);
   max-width: 400px;
   margin: 0 auto;
+}
+
+.help-card .photo-credit {
+  font-size: 0.75rem;
+  color: var(--gray);
+  margin-top: 10px;
+  text-align: center;
+  font-style: italic;
 }
 
 /* ===== TESTIMONIALS ===== */
@@ -472,7 +477,7 @@ img {
   .site-header {
     flex-direction: column;
     gap: 16px;
-    padding: 16px 20px;
+    padding: 24px 48px;
   }
 
   .nav {
