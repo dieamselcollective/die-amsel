@@ -4,7 +4,7 @@
   --text: #3d2b1f;
   --accent: #d97ab2;
   --accent-dark: #c25a93;
-  --accent-light: #e8a4cb;
+  --accent-light: #dfa1c2;
   --white: #ffffff;
   --gray: #6b6b6b;
   --dark-bg: #5a5a5a;
@@ -56,7 +56,7 @@ section[id] {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 20px 48px;
+  padding: 14px 48px;
   background-color: var(--bg);
   position: sticky;
   top: 0;
@@ -64,7 +64,7 @@ section[id] {
 }
 
 .logo img {
-  height: 120px;
+  height: 80px;
   width: auto;
   object-fit: contain;
 }
@@ -157,7 +157,7 @@ section[id] {
 }
 
 .btn-outline:hover {
-  background: rgba(217, 122, 178, 0.15);
+  background: rgba(223, 161, 194, 0.25);
   text-decoration: none;
 }
 
@@ -176,7 +176,7 @@ section[id] {
 }
 
 .btn-pink-full:hover {
-  background: var(--accent);
+  background: #c98aa8;
   color: var(--white);
 }
 
@@ -216,8 +216,11 @@ section[id] {
 }
 
 .about-text .btn {
-  display: inline-flex;
-  margin: 20px auto 0;
+  display: block;
+  position: relative;
+  left: 50%;
+  transform: translateX(-50%);
+  margin-top: 20px;
 }
 
 .about-image img {
