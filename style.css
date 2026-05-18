@@ -215,12 +215,9 @@ section[id] {
   font-size: 0.95rem;
 }
 
-.about-text .btn {
+..about-text .btn {
   display: block;
-  position: relative;
-  left: 50%;
-  transform: translateX(-50%);
-  margin-top: 20px;
+  margin: 20px auto 0;
 }
 
 .about-image img {
