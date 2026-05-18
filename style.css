@@ -158,7 +158,19 @@ section[id] {
 
 .btn-outline:hover {
   background: rgba(223, 161, 194, 0.25);
+  color: var(--text);
   text-decoration: none;
+}
+
+.btn-pink {
+  background: var(--accent-light);
+  color: var(--text);
+  border: none;
+}
+
+.btn-pink:hover {
+  background: var(--accent);
+  color: var(--white);
 }
 
 .btn-pink-full {
@@ -209,14 +221,18 @@ section[id] {
   text-align: center;
 }
 
+.about-text {
+  text-align: center;
+}
+
 .about-text p {
   margin-bottom: 16px;
   text-align: justify;
   font-size: 0.95rem;
 }
 
-..about-text .btn {
-  display: block;
+.about-text .btn {
+  display: inline-flex;
   margin: 20px auto 0;
 }
 
