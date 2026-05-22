@@ -76,6 +76,7 @@
   <link rel="apple-touch-icon" href="/assets/images/logo.png" />
 
   <link rel="stylesheet" href="style.css" />
+  <script type="text/javascript" charset="UTF-8" src="//cdn.cookie-script.com/s/48c278bdd1133d73dc29c1e464b590fd.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/js-cookie@3.0.5/dist/js.cookie.min.js"></script>
 </head>
 <body>
@@ -84,7 +85,7 @@
     <div class="cookie-content">
       <div class="cookie-text">
         <h3>Your Privacy Matters</h3>
-        <p>We use cookies to improve your experience, analyze traffic, and enable personalization. By accepting, you help us make this site better.</p>
+        <p>We use cookies to improve your experience, analyze traffic, and enable personalization. By accepting, you help us make this site better. <a href="privacy-policy.html">Read our privacy policy</a>.</p>
       </div>
       <div class="cookie-buttons">
         <button id="acceptCookies" class="btn btn-pink">Accept</button>
@@ -350,7 +351,7 @@
   <!-- FOOTER -->
   <footer class="site-footer">
     <p>&copy; Copyright. All rights reserved.</p>
-    <p><a href="gdpr.html">Privacy Policy / GDPR</a></p>
+    <p><a href="privacy-policy.html">Privacy Policy / GDPR</a></p>
   </footer>
 
   <!-- GOOGLE SHEETS FORM SUBMISSION SCRIPT -->
@@ -405,31 +406,58 @@
       const consentBanner = document.getElementById('cookieConsent');
       const acceptBtn = document.getElementById('acceptCookies');
       const rejectBtn = document.getElementById('rejectCookies');
+      const GA_MEASUREMENT_ID = 'G-XXXXXXXXXX'; // Replace with your Google Analytics Measurement ID
 
-      // Check if user has already given consent
+      function loadGoogleTag() {
+        if (!GA_MEASUREMENT_ID || GA_MEASUREMENT_ID.includes('X')) {
+          console.warn('Google Analytics ID is not configured. Skipping tag load.');
+          return;
+        }
+
+        if (window.gtagLoaded) {
+          return;
+        }
+
+        window.gtagLoaded = true;
+
+        const gtagScript = document.createElement('script');
+        gtagScript.async = true;
+        gtagScript.src = 'https://www.googletagmanager.com/gtag/js?id=' + GA_MEASUREMENT_ID;
+        document.head.appendChild(gtagScript);
+
+        const gtagInit = document.createElement('script');
+        gtagInit.text = "window.dataLayer = window.dataLayer || []; function gtag(){dataLayer.push(arguments);} gtag('js', new Date()); gtag('config', '" + GA_MEASUREMENT_ID + "', { 'anonymize_ip': true });";
+        document.head.appendChild(gtagInit);
+      }
+
+      function enableTracking() {
+        loadGoogleTag();
+        console.log('Cookies accepted - tracking enabled.');
+      }
+
       function initializeCookieConsent() {
         const hasConsent = Cookies.get(consentKey);
+        if (hasConsent === 'accepted') {
+          enableTracking();
+        }
+
         if (!hasConsent) {
           consentBanner.style.display = 'block';
         }
       }
 
-      // Handle accept
       acceptBtn?.addEventListener('click', function() {
         Cookies.set(consentKey, 'accepted', { expires: 365 });
         consentBanner.style.display = 'none';
-        // Enable analytics or tracking code here
-        console.log('Cookies accepted');
+        enableTracking();
       });
 
-      // Handle decline
       rejectBtn?.addEventListener('click', function() {
         Cookies.set(consentKey, 'rejected', { expires: 365 });
         consentBanner.style.display = 'none';
-        console.log('Cookies rejected');
+        console.log('Cookies rejected - tracking disabled.');
       });
 
-      // Initialize on load
       document.addEventListener('DOMContentLoaded', initializeCookieConsent);
     })();
   </script>
