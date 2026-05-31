@@ -42,9 +42,7 @@
           "url": "https://www.die-amsel.com/assets/images/logo.png"
         },
         "email": "dieamselcollective@gmail.com",
-        "sameAs": [
-          "https://www.instagram.com/dieamselcollective"
-        ],
+        "sameAs": ["https://www.instagram.com/dieamselcollective"],
         "description": "Science-based support for WOMXN facing sexual pain and sexual health concerns."
       },
       {
@@ -52,9 +50,7 @@
         "@id": "https://www.die-amsel.com/#website",
         "url": "https://www.die-amsel.com/",
         "name": "die Amsel Collective",
-        "publisher": {
-          "@id": "https://www.die-amsel.com/#organization"
-        },
+        "publisher": { "@id": "https://www.die-amsel.com/#organization" },
         "inLanguage": "en-US"
       },
       {
@@ -75,24 +71,13 @@
   <link rel="icon" href="/assets/images/logo.png" sizes="any" />
   <link rel="apple-touch-icon" href="/assets/images/logo.png" />
 
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="style.css" />
   <script type="text/javascript" charset="UTF-8" src="//cdn.cookie-script.com/s/48c278bdd1133d73dc29c1e464b590fd.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/js-cookie@3.0.5/dist/js.cookie.min.js"></script>
 </head>
 <body>
-  <!-- COOKIE CONSENT BANNER -->
-  <div id="cookieConsent" class="cookie-consent" style="display: none;">
-    <div class="cookie-content">
-      <div class="cookie-text">
-        <h3>Your Privacy Matters</h3>
-        <p>We use cookies to improve your experience, analyze traffic, and enable personalization. By accepting, you help us make this site better. <a href="privacy-policy.html">Read our privacy policy</a>.</p>
-      </div>
-      <div class="cookie-buttons">
-        <button id="acceptCookies" class="btn btn-pink">Accept</button>
-        <button id="rejectCookies" class="btn btn-outline-cookie">Decline</button>
-      </div>
-    </div>
-  </div>
 
   <!-- HEADER -->
   <header class="site-header">
@@ -102,17 +87,26 @@
       </a>
     </div>
     <nav class="nav">
-      <a href="index.html" class="active">Home</a>
+      <a href="#hero" class="active">Home</a>
       <a href="#about">About us</a>
       <a href="#contact">Contact us</a>
       <a href="#newsletter">Newsletter</a>
+
+      <!-- MORE DROPDOWN -->
+      <div class="nav-more">
+        <button class="nav-more-btn" aria-label="More pages">&#8230;</button>
+        <div class="nav-dropdown" id="navDropdown">
+          <a href="imprint.html">Imprint</a>
+          <a href="privacy-policy.html">Privacy Policy</a>
+        </div>
+      </div>
     </nav>
   </header>
 
   <main>
 
     <!-- HERO -->
-    <section class="hero">
+    <section id="hero" class="hero">
       <div class="hero-content">
         <h1>Welcome to dieAmsel Collective</h1>
         <p>
@@ -164,17 +158,18 @@
           <a href="#contact" class="btn btn-pink">Find Out More Now</a>
         </div>
         <div class="about-image">
-          <img src="assets/images/timothy-dykes-J2iliIecHJ4-unsplash.jpg" alt="Orange flower" />
+          <a href="https://unsplash.com/photos/a-close-up-of-a-flower-J2iliIecHJ4" target="_blank" rel="noopener noreferrer" class="about-img-wrap">
+            <img src="assets/images/timothy-dykes-J2iliIecHJ4-unsplash.jpg" alt="Orange flower" />
+            <span class="img-credit-overlay">Photo by Timothy Dykes on Unsplash</span>
+          </a>
+          <!--
           <p class="photo-credit">
-            Photo by 
-            <a href="https://unsplash.com/@timothycdykes?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText" target="_blank" rel="noopener noreferrer">
-              Timothy Dykes
-            </a>
-            on 
-            <a href="https://unsplash.com/photos/a-close-up-of-a-flower-J2iliIecHJ4?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText" target="_blank" rel="noopener noreferrer">
-              Unsplash
-            </a>
+            Photo by
+            <a href="https://unsplash.com/@timothycdykes?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText" target="_blank" rel="noopener noreferrer">Timothy Dykes</a>
+            on
+            <a href="https://unsplash.com/photos/a-close-up-of-a-flower-J2iliIecHJ4?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText" target="_blank" rel="noopener noreferrer">Unsplash</a>
           </p>
+          -->
         </div>
       </div>
     </section>
@@ -187,71 +182,97 @@
         <a href="#" class="btn btn-pink">Find out more now</a>
       </div>
       <div class="help-grid">
+
         <div class="help-card">
-          <img src="assets/images/jane-Dw2ablr-JPo-unsplash.jpg" alt="Sexual Anatomy" />
+          <a href="https://unsplash.com/photos/white-and-pink-flower-in-macro-photography-Dw2ablr-JPo" target="_blank" rel="noopener noreferrer" class="help-card-img-wrap">
+            <img src="assets/images/jane-Dw2ablr-JPo-unsplash.jpg" alt="Sexual Anatomy" />
+            <span class="img-credit-overlay">Photo by Jane on Unsplash</span>
+          </a>
+          <!--
           <p class="photo-credit">
             Photo by <a href="https://unsplash.com/@janes_clutch?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText" target="_blank" rel="noopener noreferrer">Jane</a>
             on <a href="https://unsplash.com/photos/white-and-pink-flower-in-macro-photography-Dw2ablr-JPo?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText" target="_blank" rel="noopener noreferrer">Unsplash</a>
           </p>
+          -->
           <h3>Sexual Anatomy for All</h3>
           <p>Scientifically accurate and reliable information on sexual anatomy and functioning.</p>
         </div>
 
         <div class="help-card">
-          <img src="assets/images/tabitha-turner--ip6OUqG5WY-unsplash.jpg" alt="Workshops" />
+          <a href="https://unsplash.com/photos/a-woman-sitting-at-a-table-writing-on-a-piece-of-paper-L2s3fM9jU20" target="_blank" rel="noopener noreferrer" class="help-card-img-wrap">
+            <img src="assets/images/giu-vicente-L2s3fM9jU20-unsplash.jpg" alt="Workshops" />
+            <span class="img-credit-overlay">Photo by Giu Vicente on Unsplash</span>
+          </a>
+          <!--
           <p class="photo-credit">
-            Photo by
-            <a href="https://unsplash.com/@tabithaturnervisuals?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText" target="_blank" rel="noopener noreferrer">
-              tabitha turner
-            </a>
-            on
-            <a href="https://unsplash.com/photos/persons-hand-on-lap--ip6OUqG5WY?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText" target="_blank" rel="noopener noreferrer">
-              Unsplash
-            </a>
+            Photo by <a href="https://unsplash.com/@giuvicente?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText" target="_blank" rel="noopener noreferrer">Giu Vicente</a>
+            on <a href="https://unsplash.com/photos/a-woman-sitting-at-a-table-writing-on-a-piece-of-paper-L2s3fM9jU20?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText" target="_blank" rel="noopener noreferrer">Unsplash</a>
           </p>
+          -->
           <h3>Workshops and Seminars</h3>
           <p>Interactive learning opportunities on sexuality and health topics.</p>
         </div>
 
         <div class="help-card">
-          <img src="assets/images/ihor-vgmhEP8ffzA-unsplash.jpg" alt="Self-Diagnostic" />
+          <a href="https://unsplash.com/photos/a-close-up-of-a-pink-flower-with-water-droplets-vgmhEP8ffzA" target="_blank" rel="noopener noreferrer" class="help-card-img-wrap">
+            <img src="assets/images/ihor-vgmhEP8ffzA-unsplash.jpg" alt="Self-Diagnostic" />
+            <span class="img-credit-overlay">Photo by ihor on Unsplash</span>
+          </a>
+          <!--
           <p class="photo-credit">
             Photo by <a href="https://unsplash.com/@ishlpnk?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText" target="_blank" rel="noopener noreferrer">ihor</a>
             on <a href="https://unsplash.com/photos/a-close-up-of-a-pink-flower-with-water-droplets-vgmhEP8ffzA?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText" target="_blank" rel="noopener noreferrer">Unsplash</a>
           </p>
+          -->
           <h3>Self-Diagnostic Tool</h3>
           <p>Explore your sexual pain through a guided self-diagnostic tool and understand the type of the pain.</p>
         </div>
 
         <div class="help-card">
-          <img src="assets/images/jannes-jacobs-pMQgDg_8z88-unsplash.jpg" alt="Pelvic Floor" />
+          <a href="https://unsplash.com/photos/woman-wearing-black-panty-pMQgDg_8z88" target="_blank" rel="noopener noreferrer" class="help-card-img-wrap">
+            <img src="assets/images/jannes-jacobs-pMQgDg_8z88-unsplash.jpg" alt="Pelvic Floor" />
+            <span class="img-credit-overlay">Photo by Jannes Jacobs on Unsplash</span>
+          </a>
+          <!--
           <p class="photo-credit">
             Photo by <a href="https://unsplash.com/@jannesjacobs?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText" target="_blank" rel="noopener noreferrer">Jannes Jacobs</a>
             on <a href="https://unsplash.com/photos/woman-wearing-black-panty-pMQgDg_8z88?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText" target="_blank" rel="noopener noreferrer">Unsplash</a>
           </p>
+          -->
           <h3>Train Your Pelvic Floor</h3>
           <p>Learn which type of exercises are suitable for your pain.</p>
         </div>
 
         <div class="help-card">
-          <img src="assets/images/alexander-krivitskiy-rkc85-g-3iE-unsplash.jpg" alt="Validate Pain" />
+          <a href="https://unsplash.com/photos/grayscale-photography-of-naked-human-rkc85-g-3iE" target="_blank" rel="noopener noreferrer" class="help-card-img-wrap">
+            <img src="assets/images/alexander-krivitskiy-rkc85-g-3iE-unsplash.jpg" alt="Validate Pain" />
+            <span class="img-credit-overlay">Photo by Alexander Krivitskiy on Unsplash</span>
+          </a>
+          <!--
           <p class="photo-credit">
             Photo by <a href="https://unsplash.com/@krivitskiy?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText" target="_blank" rel="noopener noreferrer">Alexander Krivitskiy</a>
             on <a href="https://unsplash.com/photos/grayscale-photography-of-naked-human-rkc85-g-3iE?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText" target="_blank" rel="noopener noreferrer">Unsplash</a>
           </p>
+          -->
           <h3>Validate Your Pain</h3>
           <p>Learn how to validate and manage your pain through psychological tips.</p>
         </div>
 
         <div class="help-card">
-          <img src="assets/images/monika-kozub-9Evqbiy9Lj8-unsplash.jpg" alt="Professionals" />
+          <a href="https://unsplash.com/photos/woman-in-white-tank-top-raising-her-hands-9Evqbiy9Lj8" target="_blank" rel="noopener noreferrer" class="help-card-img-wrap">
+            <img src="assets/images/monika-kozub-9Evqbiy9Lj8-unsplash.jpg" alt="Professionals" />
+            <span class="img-credit-overlay">Photo by Monika Kozub on Unsplash</span>
+          </a>
+          <!--
           <p class="photo-credit">
             Photo by <a href="https://unsplash.com/@berlinboudoir?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText" target="_blank" rel="noopener noreferrer">Monika Kozub</a>
             on <a href="https://unsplash.com/photos/woman-in-white-tank-top-raising-her-hands-9Evqbiy9Lj8?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText" target="_blank" rel="noopener noreferrer">Unsplash</a>
           </p>
+          -->
           <h3>Connect to Professionals</h3>
           <p>Personal consultation with professionals.</p>
         </div>
+
       </div>
     </section>
 
@@ -259,19 +280,15 @@
     <section class="testimonials-section">
       <div class="testimonials-grid">
         <div class="testimonial-card">
-          <p class="quote">"I didn't know that it was something that I could
-            talk about. I feel being heard."</p>
+          <p class="quote">"I didn't know that it was something that I could talk about. I feel being heard."</p>
           <p class="author">Interview Participant (34)</p>
         </div>
         <div class="testimonial-card">
-          <p class="quote">"I don't trust the accuracy of the information on
-            the internet. So I would use an online platform which I can
-            trust."</p>
+          <p class="quote">"I don't trust the accuracy of the information on the internet. So I would use an online platform which I can trust."</p>
           <p class="author">Survey Participant (37)</p>
         </div>
         <div class="testimonial-card">
-          <p class="quote">"I always thought that pain was normal. I want to
-            be able to have pain free sex."</p>
+          <p class="quote">"I always thought that pain was normal. I want to be able to have pain free sex."</p>
           <p class="author">Survey Participant (27)</p>
         </div>
       </div>
@@ -295,9 +312,7 @@
         <div class="consent-row">
           <input type="checkbox" id="contact-consent" name="consent" required />
           <label for="contact-consent" class="consent-label">
-            I agree that this data may be stored and processed for the
-            purpose of contacting me. I understand that I can revoke my
-            consent at any time. *
+            I agree that this data may be stored and processed for the purpose of contacting me. I understand that I can revoke my consent at any time. *
           </label>
         </div>
 
@@ -306,10 +321,7 @@
       </form>
 
       <p class="contact-email">
-        E-Mail:
-        <a href="mailto:dieamselcollective@gmail.com">
-          dieamselcollective@gmail.com
-        </a>
+        E-Mail: <a href="mailto:dieamselcollective@gmail.com">dieamselcollective@gmail.com</a>
       </p>
     </section>
 
@@ -322,9 +334,7 @@
 
         <input type="hidden" name="tab" value="Newsletter Subscriptions" />
 
-        <label for="newsletter-email">
-          Your E-mail*
-        </label>
+        <label for="newsletter-email">Your E-mail*</label>
         <input type="email" id="newsletter-email" name="email" required placeholder="your@email.com" />
 
         <div class="consent-row">
@@ -339,10 +349,7 @@
       </form>
 
       <p class="contact-email">
-        Questions? Email us:
-        <a href="mailto:dieamselcollective@gmail.com">
-          dieamselcollective@gmail.com
-        </a>
+        Questions? Email us: <a href="mailto:dieamselcollective@gmail.com">dieamselcollective@gmail.com</a>
       </p>
     </section>
 
@@ -356,16 +363,12 @@
 
   <!-- GOOGLE SHEETS FORM SUBMISSION SCRIPT -->
   <script>
-    // Handle form submissions to Google Sheets
     document.addEventListener('submit', function(e) {
-      if (e.target.classList.contains('contact-form-wrapper') || 
+      if (e.target.classList.contains('contact-form-wrapper') ||
           e.target.classList.contains('newsletter-form-wrapper')) {
-        
         e.preventDefault();
         const form = e.target;
         const action = form.getAttribute('action');
-        
-        // Collect form data
         const formData = new FormData(form);
         const data = {
           name: formData.get('name') || '',
@@ -373,14 +376,10 @@
           message: formData.get('message') || '',
           consent: formData.get('consent') ? 'yes' : 'no'
         };
-        
-        // Send to Google Apps Script
         fetch(action, {
           method: 'POST',
           body: JSON.stringify(data),
-          headers: {
-            'Content-Type': 'application/json'
-          }
+          headers: { 'Content-Type': 'application/json' }
         })
         .then(response => response.json())
         .then(result => {
@@ -399,66 +398,53 @@
     });
   </script>
 
-  <!-- COOKIE CONSENT SCRIPT -->
+  <!-- NAV DROPDOWN -->
   <script>
-    (function() {
-      const consentKey = 'dieamsel-cookie-consent';
-      const consentBanner = document.getElementById('cookieConsent');
-      const acceptBtn = document.getElementById('acceptCookies');
-      const rejectBtn = document.getElementById('rejectCookies');
-      const GA_MEASUREMENT_ID = 'G-XXXXXXXXXX'; // Replace with your Google Analytics Measurement ID
+    (function () {
+      const btn = document.querySelector('.nav-more-btn');
+      const dropdown = document.getElementById('navDropdown');
 
-      function loadGoogleTag() {
-        if (!GA_MEASUREMENT_ID || GA_MEASUREMENT_ID.includes('X')) {
-          console.warn('Google Analytics ID is not configured. Skipping tag load.');
-          return;
-        }
-
-        if (window.gtagLoaded) {
-          return;
-        }
-
-        window.gtagLoaded = true;
-
-        const gtagScript = document.createElement('script');
-        gtagScript.async = true;
-        gtagScript.src = 'https://www.googletagmanager.com/gtag/js?id=' + GA_MEASUREMENT_ID;
-        document.head.appendChild(gtagScript);
-
-        const gtagInit = document.createElement('script');
-        gtagInit.text = "window.dataLayer = window.dataLayer || []; function gtag(){dataLayer.push(arguments);} gtag('js', new Date()); gtag('config', '" + GA_MEASUREMENT_ID + "', { 'anonymize_ip': true });";
-        document.head.appendChild(gtagInit);
-      }
-
-      function enableTracking() {
-        loadGoogleTag();
-        console.log('Cookies accepted - tracking enabled.');
-      }
-
-      function initializeCookieConsent() {
-        const hasConsent = Cookies.get(consentKey);
-        if (hasConsent === 'accepted') {
-          enableTracking();
-        }
-
-        if (!hasConsent) {
-          consentBanner.style.display = 'block';
-        }
-      }
-
-      acceptBtn?.addEventListener('click', function() {
-        Cookies.set(consentKey, 'accepted', { expires: 365 });
-        consentBanner.style.display = 'none';
-        enableTracking();
+      btn.addEventListener('click', function (e) {
+        e.stopPropagation();
+        dropdown.classList.toggle('open');
       });
 
-      rejectBtn?.addEventListener('click', function() {
-        Cookies.set(consentKey, 'rejected', { expires: 365 });
-        consentBanner.style.display = 'none';
-        console.log('Cookies rejected - tracking disabled.');
+      document.addEventListener('click', function () {
+        dropdown.classList.remove('open');
+      });
+    })();
+  </script>
+
+  <!-- SMOOTH SCROLL + ACTIVE NAV -->
+  <script>
+    (function () {
+      document.querySelectorAll('a[href^="#"]').forEach(function (anchor) {
+        anchor.addEventListener('click', function (e) {
+          const target = document.querySelector(this.getAttribute('href'));
+          if (target) {
+            e.preventDefault();
+            target.scrollIntoView({ behavior: 'smooth' });
+          }
+        });
       });
 
-      document.addEventListener('DOMContentLoaded', initializeCookieConsent);
+      const sections = ['hero', 'about', 'contact', 'newsletter'];
+      const navLinks = document.querySelectorAll('.nav > a');
+
+      const observer = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+          if (entry.isIntersecting) {
+            navLinks.forEach(function (l) { l.classList.remove('active'); });
+            const active = document.querySelector('.nav a[href="#' + entry.target.id + '"]');
+            if (active) active.classList.add('active');
+          }
+        });
+      }, { threshold: 0.4 });
+
+      sections.forEach(function (id) {
+        const el = document.getElementById(id);
+        if (el) observer.observe(el);
+      });
     })();
   </script>
 
