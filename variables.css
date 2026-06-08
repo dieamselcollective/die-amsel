@@ -1,0 +1,21 @@
+/* ===== DESIGN SYSTEM VARIABLES ===== */
+/* Change these variables to update colors and design throughout the entire project */
+
+:root {
+  /* COLORS */
+  --bg: #f5ebe0;              /* Main background color */
+  --text: #3d2b1f;            /* Main text color */
+  --accent: #d97ab2;          /* Primary accent/button color */
+  --accent-dark: #c25a93;     /* Darker accent (hover states) */
+  --accent-light: #dfa1c2;    /* Lighter accent */
+  --white: #ffffff;           /* White */
+  --gray: #6b6b6b;            /* Gray text */
+  --dark-bg: #5a5a5a;         /* Dark background */
+  
+  /* SHADOWS */
+  --shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  --shadow-lg: 0 20px 50px rgba(0, 0, 0, 0.15);
+  
+  /* FONTS */
+  --font-primary: 'Finlandica Text', Georgia, sans-serif;
+}

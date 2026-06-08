@@ -73,9 +73,10 @@
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Finlandica+Text:wght@400;500;600;700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="style.css" />
-  <script type="text/javascript" charset="UTF-8" src="//cdn.cookie-script.com/s/48c278bdd1133d73dc29c1e464b590fd.js"></script>
+  <!-- JS-COOKIE LIBRARY -->
+  <script src="https://cdn.jsdelivr.net/npm/js-cookie@3.0.5/dist/js.cookie.min.js"></script>
 </head>
 <body>
 
@@ -142,7 +143,7 @@
     <section id="about" class="about-section">
       <div class="about-grid">
         <div class="about-text">
-          <h2>About Us -<br>dieAmsel Collective</h2>
+          <h2>About Us - dieAmsel Collective</h2>
           <p>
             dieAmsel Collective consists of individuals who are determined to
             make life easier for WOMXN. Our team members have specialized in
@@ -298,7 +299,7 @@
     <section id="contact" class="contact-section">
       <h2>Have Questions?</h2>
       <form class="contact-form-wrapper"
-        action="YOUR_QUESTIONS_GOOGLE_APPS_SCRIPT_URL_HERE" method="POST">
+        action="https://script.google.com/macros/s/AKfycbw2wLLKZRM1vDy01syC6UYVy3HOZSOwGx894PHWGj1g6uXTFZwuEVZChW2YXe9TtEKM/exec" method="POST">
 
         <label for="contact-name">Name/Nickname*</label>
         <input type="text" id="contact-name" name="name" required placeholder="Your name" />
@@ -330,7 +331,7 @@
       <h2>Stay Updated</h2>
       <p style="text-align: center; color: #6b6b6b; margin-bottom: 32px;">Subscribe to our newsletter for science-based insights on sexual health and wellness.</p>
       <form class="newsletter-form-wrapper"
-        action="https://script.google.com/macros/d/YOUR_GOOGLE_APPS_SCRIPT_URL_HERE/usercontent" method="POST">
+        action="https://script.google.com/macros/s/AKfycbxaGq8JT9GGr2CFUQXGtQoHmcr5yl8QmuMt1HNr62-yCg3jSjUgpoH1UYa7psQd3xPj/exec" method="POST">
 
         <input type="hidden" name="tab" value="Newsletter Subscriptions" />
 
@@ -355,6 +356,17 @@
 
   </main>
 
+  <!-- COOKIE CONSENT BANNER -->
+  <div id="cookieConsent" class="cookie-banner" style="display: none;">
+    <div class="cookie-content">
+      <p>We use cookies to enhance your experience. By continuing to browse, you agree to our <a href="privacy-policy.html">Privacy Policy</a>.</p>
+      <div class="cookie-buttons">
+        <button id="rejectCookies" class="btn btn-secondary">Reject</button>
+        <button id="acceptCookies" class="btn btn-pink">Accept</button>
+      </div>
+    </div>
+  </div>
+
   <!-- FOOTER -->
   <footer class="site-footer">
     <p>&copy; Copyright. All rights reserved.</p>
@@ -370,16 +382,10 @@
         const form = e.target;
         const action = form.getAttribute('action');
         const formData = new FormData(form);
-        const data = {
-          name: formData.get('name') || '',
-          email: formData.get('email') || '',
-          message: formData.get('message') || '',
-          consent: formData.get('consent') ? 'yes' : 'no'
-        };
+        
         fetch(action, {
           method: 'POST',
-          body: JSON.stringify(data),
-          headers: { 'Content-Type': 'application/json' }
+          body: formData
         })
         .then(response => response.json())
         .then(result => {
@@ -387,7 +393,7 @@
             alert('✅ Thank you! Your message was received and saved to Google Sheets.');
             form.reset();
           } else {
-            alert('❌ Error: ' + result.error);
+            alert('❌ Error: ' + (result.error || result.message));
           }
         })
         .catch(error => {
@@ -445,6 +451,69 @@
         const el = document.getElementById(id);
         if (el) observer.observe(el);
       });
+    })();
+  </script>
+
+  <!-- COOKIE CONSENT SCRIPT -->
+  <script>
+    (function() {
+      const consentKey = 'dieamsel-cookie-consent';
+      const consentBanner = document.getElementById('cookieConsent');
+      const acceptBtn = document.getElementById('acceptCookies');
+      const rejectBtn = document.getElementById('rejectCookies');
+      const GA_MEASUREMENT_ID = 'G-XXXXXXXXXX'; // Replace with your Google Analytics Measurement ID
+
+      function loadGoogleTag() {
+        if (!GA_MEASUREMENT_ID || GA_MEASUREMENT_ID.includes('X')) {
+          console.warn('Google Analytics ID is not configured. Skipping tag load.');
+          return;
+        }
+
+        if (window.gtagLoaded) {
+          return;
+        }
+
+        window.gtagLoaded = true;
+
+        const gtagScript = document.createElement('script');
+        gtagScript.async = true;
+        gtagScript.src = 'https://www.googletagmanager.com/gtag/js?id=' + GA_MEASUREMENT_ID;
+        document.head.appendChild(gtagScript);
+
+        const gtagInit = document.createElement('script');
+        gtagInit.text = "window.dataLayer = window.dataLayer || []; function gtag(){dataLayer.push(arguments);} gtag('js', new Date()); gtag('config', '" + GA_MEASUREMENT_ID + "', { 'anonymize_ip': true });";
+        document.head.appendChild(gtagInit);
+      }
+
+      function enableTracking() {
+        loadGoogleTag();
+        console.log('Cookies accepted - tracking enabled.');
+      }
+
+      function initializeCookieConsent() {
+        const hasConsent = Cookies.get(consentKey);
+        if (hasConsent === 'accepted') {
+          enableTracking();
+        }
+
+        if (!hasConsent) {
+          consentBanner.style.display = 'block';
+        }
+      }
+
+      acceptBtn?.addEventListener('click', function() {
+        Cookies.set(consentKey, 'accepted', { expires: 365 });
+        consentBanner.style.display = 'none';
+        enableTracking();
+      });
+
+      rejectBtn?.addEventListener('click', function() {
+        Cookies.set(consentKey, 'rejected', { expires: 365 });
+        consentBanner.style.display = 'none';
+        console.log('Cookies rejected - tracking disabled.');
+      });
+
+      document.addEventListener('DOMContentLoaded', initializeCookieConsent);
     })();
   </script>
 

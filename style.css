@@ -1,16 +1,5 @@
-/* ===== VARIABLES ===== */
-:root {
-  --bg: #f5ebe0;
-  --text: #3d2b1f;
-  --accent: #d97ab2;
-  --accent-dark: #c25a93;
-  --accent-light: #dfa1c2;
-  --white: #ffffff;
-  --gray: #6b6b6b;
-  --dark-bg: #5a5a5a;
-  --shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-  --shadow-lg: 0 20px 50px rgba(0, 0, 0, 0.15);
-}
+/* ===== IMPORTS ===== */
+@import url('variables.css');
 
 /* ===== ANIMATIONS ===== */
 @keyframes slideInUp {
@@ -26,7 +15,7 @@
 * { box-sizing: border-box; margin: 0; padding: 0; }
 
 body {
-  font-family: 'Montserrat', Georgia, sans-serif;
+  font-family: var(--font-primary);
   background-color: var(--bg);
   color: var(--text);
   line-height: 1.7;
@@ -595,6 +584,66 @@ section[id] { scroll-margin-top: 120px; }
 }
 .site-footer p { margin-bottom: 4px; }
 
+/* ===== COOKIE CONSENT BANNER ===== */
+.cookie-banner {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: var(--text);
+  color: var(--white);
+  padding: 20px 24px;
+  box-shadow: 0 -2px 15px rgba(0, 0, 0, 0.2);
+  z-index: 1000;
+  animation: slideInUp 0.3s ease-out;
+}
+
+.cookie-content {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+}
+
+.cookie-content p {
+  margin: 0;
+  font-size: 0.95rem;
+  flex: 1;
+}
+
+.cookie-content a {
+  color: var(--accent-light);
+}
+
+.cookie-content a:hover {
+  color: var(--accent);
+  text-decoration: underline;
+}
+
+.cookie-buttons {
+  display: flex;
+  gap: 12px;
+  flex-shrink: 0;
+}
+
+.cookie-buttons .btn {
+  padding: 8px 16px;
+  font-size: 0.9rem;
+  white-space: nowrap;
+}
+
+.btn-secondary {
+  background-color: transparent;
+  border: 1px solid var(--white);
+  color: var(--white);
+}
+
+.btn-secondary:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
 /* ===== RESPONSIVE ===== */
 @media (max-width: 768px) {
   .site-header { flex-direction: column; gap: 16px; padding: 24px 20px; }
@@ -611,4 +660,8 @@ section[id] { scroll-margin-top: 120px; }
   .testimonials-grid { grid-template-columns: 1fr; }
   .contact-section, .newsletter-section { padding: 60px 20px; max-width: 100%; }
   .contact-form-wrapper, .newsletter-form-wrapper { padding: 24px 16px; }
+  .cookie-content { flex-direction: column; gap: 16px; align-items: stretch; }
+  .cookie-content p { font-size: 0.85rem; }
+  .cookie-buttons { flex-direction: column; }
+  .cookie-buttons .btn { width: 100%; }
 }
