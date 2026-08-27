@@ -1,0 +1,797 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Vulvar Pain Map | Die Amsel</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        html,
+        body {
+            margin: 0;
+            width: 100%;
+            height: 100%;
+            font-family: Arial, sans-serif;
+            background: #f8f5f3;
+            color: #292424;
+        }
+
+        #app {
+            width: 100%;
+            height: 100%;
+            display: flex;
+        }
+
+        #viewer {
+            position: relative;
+            flex: 1;
+            min-width: 0;
+            height: 100%;
+        }
+
+        #info {
+            width: 360px;
+            height: 100%;
+            background: white;
+            padding: 28px;
+            border-left: 1px solid #e5dddd;
+            overflow-y: auto;
+        }
+
+        #info h1 {
+            margin-top: 0;
+            font-size: 24px;
+        }
+
+        #info h2 {
+            font-size: 20px;
+            margin-bottom: 8px;
+        }
+
+        #info p {
+            line-height: 1.55;
+        }
+
+        .instruction {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            background: rgba(255, 255, 255, 0.92);
+            padding: 12px 16px;
+            border-radius: 12px;
+            z-index: 10;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+        }
+
+        .hint {
+            color: #777;
+            font-size: 14px;
+        }
+    </style>
+    <script type="importmap">
+    {
+        "imports": {
+            "three": "https://cdn.jsdelivr.net/npm/three@0.178.0/build/three.module.js",
+            "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.178.0/examples/jsm/"
+        }
+    }
+    </script>
+</head>
+
+<body>
+
+    <div id="app">
+
+        <main id="viewer">
+
+            <div class="instruction">
+                <strong>Where do you feel pain?</strong><br>
+                <span class="hint">
+                    Click a location on the model.
+                </span>
+            </div>
+
+        </main>
+
+        <aside id="info">
+
+            <h1>Vulvar Pain Map</h1>
+
+            <p class="hint">
+                Select the area where you experience pain
+                to explore possible explanations.
+            </p>
+
+            <div id="result">
+
+                <h2>Select a location</h2>
+
+                <p>
+                    Your selected location will appear here.
+                </p>
+
+            </div>
+
+        </aside>
+
+    </div>
+    <script type="module">
+
+    import * as THREE from "three";
+    import { OrbitControls } from "three/addons/controls/OrbitControls.js";
+
+
+    /* ============================================
+       VIEWER
+    ============================================ */
+
+    const viewer = document.getElementById("viewer");
+
+
+    /* ============================================
+       SCENE
+    ============================================ */
+
+    const scene = new THREE.Scene();
+
+    scene.background = new THREE.Color(0xf8f5f3);
+
+
+    /* ============================================
+       CAMERA
+    ============================================ */
+
+    const camera = new THREE.PerspectiveCamera(
+        35,
+        viewer.clientWidth / viewer.clientHeight,
+        0.1,
+        100
+    );
+
+    camera.position.set(0, 0, 7);
+
+
+    /* ============================================
+       RENDERER
+    ============================================ */
+
+    const renderer = new THREE.WebGLRenderer({
+        antialias: true
+    });
+
+    renderer.setPixelRatio(
+        Math.min(window.devicePixelRatio, 2)
+    );
+
+    renderer.setSize(
+        viewer.clientWidth,
+        viewer.clientHeight
+    );
+
+    renderer.outputColorSpace = THREE.SRGBColorSpace;
+
+    viewer.appendChild(renderer.domElement);
+
+
+    /* ============================================
+       LIGHTING
+    ============================================ */
+
+    const ambientLight = new THREE.HemisphereLight(
+        0xffffff,
+        0xd9c8c3,
+        2.5
+    );
+
+    scene.add(ambientLight);
+
+
+    const keyLight = new THREE.DirectionalLight(
+        0xffffff,
+        2
+    );
+
+    keyLight.position.set(3, 4, 6);
+
+    scene.add(keyLight);
+
+
+    /* ============================================
+       CAMERA CONTROLS
+    ============================================ */
+
+    const controls = new OrbitControls(
+        camera,
+        renderer.domElement
+    );
+
+    controls.enableDamping = true;
+    controls.enablePan = false;
+
+    controls.minDistance = 4;
+    controls.maxDistance = 10;
+
+
+    /* ============================================
+       MATERIALS
+    ============================================ */
+
+    const outerMaterial =
+        new THREE.MeshStandardMaterial({
+            color: 0xd99091,
+            roughness: 0.65,
+            metalness: 0
+        });
+
+
+    const innerMaterial =
+        new THREE.MeshStandardMaterial({
+            color: 0xc56f75,
+            roughness: 0.7,
+            metalness: 0
+        });
+
+
+    const openingMaterial =
+        new THREE.MeshStandardMaterial({
+            color: 0x6f3037,
+            roughness: 0.8,
+            metalness: 0
+        });
+
+
+    /* ============================================
+       HELPER
+    ============================================ */
+
+    function createEllipsoid(
+        x,
+        y,
+        z,
+        scaleX,
+        scaleY,
+        scaleZ,
+        material
+    ) {
+
+        const geometry =
+            new THREE.SphereGeometry(
+                1,
+                48,
+                32
+            );
+
+        const mesh =
+            new THREE.Mesh(
+                geometry,
+                material
+            );
+
+        mesh.position.set(
+            x,
+            y,
+            z
+        );
+
+        mesh.scale.set(
+            scaleX,
+            scaleY,
+            scaleZ
+        );
+
+        return mesh;
+    }
+
+
+    /* ============================================
+       MODEL
+    ============================================ */
+
+    const vulva =
+        new THREE.Group();
+
+    scene.add(vulva);
+
+
+    /* Mons pubis */
+
+    vulva.add(
+        createEllipsoid(
+            0,
+            1.45,
+            0,
+            1.15,
+            0.65,
+            0.45,
+            outerMaterial
+        )
+    );
+
+
+    /* Left labia majora */
+
+    vulva.add(
+        createEllipsoid(
+            -0.72,
+            0.35,
+            0,
+            0.55,
+            1.45,
+            0.48,
+            outerMaterial
+        )
+    );
+
+
+    /* Right labia majora */
+
+    vulva.add(
+        createEllipsoid(
+            0.72,
+            0.35,
+            0,
+            0.55,
+            1.45,
+            0.48,
+            outerMaterial
+        )
+    );
+
+
+    /* Left labia minora */
+
+    vulva.add(
+        createEllipsoid(
+            -0.38,
+            0.15,
+            0.38,
+            0.28,
+            1.05,
+            0.22,
+            innerMaterial
+        )
+    );
+
+
+    /* Right labia minora */
+
+    vulva.add(
+        createEllipsoid(
+            0.38,
+            0.15,
+            0.38,
+            0.28,
+            1.05,
+            0.22,
+            innerMaterial
+        )
+    );
+
+
+    /* Clitoral glans */
+
+    vulva.add(
+        createEllipsoid(
+            0,
+            0.93,
+            0.52,
+            0.22,
+            0.20,
+            0.16,
+            innerMaterial
+        )
+    );
+
+
+    /* Vestibule */
+
+    vulva.add(
+        createEllipsoid(
+            0,
+            -0.35,
+            0.35,
+            0.48,
+            0.55,
+            0.18,
+            innerMaterial
+        )
+    );
+
+
+    /* Vaginal opening */
+
+    vulva.add(
+        createEllipsoid(
+            0,
+            -0.38,
+            0.48,
+            0.28,
+            0.40,
+            0.12,
+            openingMaterial
+        )
+    );
+
+
+    /* Urethral opening */
+
+    vulva.add(
+        createEllipsoid(
+            0,
+            0.18,
+            0.48,
+            0.11,
+            0.09,
+            0.08,
+            openingMaterial
+        )
+    );
+
+
+    /* Perineum */
+
+    vulva.add(
+        createEllipsoid(
+            0,
+            -1.15,
+            0.05,
+            0.42,
+            0.45,
+            0.32,
+            outerMaterial
+        )
+    );
+
+
+    /* ============================================
+       FRAME MODEL
+    ============================================ */
+
+    vulva.rotation.x = 0;
+
+    vulva.position.y = -0.1;
+
+
+        /* ============================================
+       PAIN ZONES
+    ============================================ */
+
+    const zones = [
+
+        {
+            id: "clitoris",
+            name: "Clitoral area",
+            position: [0, 0.93, 0.68],
+            scale: [0.30, 0.25, 0.25],
+
+            causes: [
+                "Localized vulvar pain",
+                "Irritation or inflammation",
+                "Nerve-related pain"
+            ]
+        },
+
+        {
+            id: "left_labia",
+            name: "Left labia",
+            position: [-0.72, 0.25, 0.55],
+            scale: [0.55, 1.20, 0.30],
+
+            causes: [
+                "Irritant or contact dermatitis",
+                "Skin conditions",
+                "Localized vulvar pain"
+            ]
+        },
+
+        {
+            id: "right_labia",
+            name: "Right labia",
+            position: [0.72, 0.25, 0.55],
+            scale: [0.55, 1.20, 0.30],
+
+            causes: [
+                "Irritant or contact dermatitis",
+                "Skin conditions",
+                "Localized vulvar pain"
+            ]
+        },
+
+        {
+            id: "vestibule",
+            name: "Vaginal entrance / vestibule",
+            position: [0, -0.25, 0.70],
+            scale: [0.65, 0.65, 0.30],
+
+            causes: [
+                "Provoked vestibular pain",
+                "Irritation or inflammation",
+                "Pelvic-floor muscle pain"
+            ]
+        },
+
+        {
+            id: "urethra",
+            name: "Urethral area",
+            position: [0, 0.18, 0.72],
+            scale: [0.22, 0.22, 0.25],
+
+            causes: [
+                "Urinary or urethral irritation",
+                "Vulvar pain syndromes"
+            ]
+        },
+
+        {
+            id: "perineum",
+            name: "Perineum",
+            position: [0, -1.15, 0.45],
+            scale: [0.50, 0.50, 0.35],
+
+            causes: [
+                "Pelvic-floor muscle pain",
+                "Other pelvic pain conditions"
+            ]
+        }
+
+    ];
+
+
+    /* ============================================
+       CREATE CLICKABLE ZONES
+    ============================================ */
+
+    const hotspotMeshes = [];
+
+    zones.forEach(zone => {
+
+        const geometry =
+            new THREE.SphereGeometry(
+                1,
+                32,
+                20
+            );
+
+        /*
+         * Invisible material.
+         *
+         * The zones exist only for interaction.
+         * We don't want them visually covering
+         * the anatomical model.
+         */
+
+        const material =
+            new THREE.MeshBasicMaterial({
+                transparent: true,
+                opacity: 0
+            });
+
+        const hotspot =
+            new THREE.Mesh(
+                geometry,
+                material
+            );
+
+        hotspot.position.set(
+            ...zone.position
+        );
+
+        hotspot.scale.set(
+            ...zone.scale
+        );
+
+        hotspot.userData.zone = zone;
+
+        scene.add(hotspot);
+
+        hotspotMeshes.push(hotspot);
+
+    });
+
+
+    /* ============================================
+       HOVER HIGHLIGHT
+    ============================================ */
+
+    const highlightMaterial =
+        new THREE.MeshBasicMaterial({
+            color: 0xff6f7d,
+            transparent: true,
+            opacity: 0.35
+        });
+
+    let hoveredZone = null;
+
+
+    /* ============================================
+       RAYCASTING
+    ============================================ */
+
+    const raycaster =
+        new THREE.Raycaster();
+
+    const mouse =
+        new THREE.Vector2();
+
+
+    function updatePointer(event) {
+
+        const rect =
+            renderer.domElement.getBoundingClientRect();
+
+        mouse.x =
+            ((event.clientX - rect.left)
+            / rect.width) * 2 - 1;
+
+        mouse.y =
+            -((event.clientY - rect.top)
+            / rect.height) * 2 + 1;
+
+        raycaster.setFromCamera(
+            mouse,
+            camera
+        );
+
+    }
+
+
+    /* ============================================
+       MOUSE MOVE
+    ============================================ */
+
+    renderer.domElement.addEventListener(
+        "pointermove",
+        event => {
+
+            updatePointer(event);
+
+            const intersections =
+                raycaster.intersectObjects(
+                    hotspotMeshes
+                );
+
+            if (intersections.length > 0) {
+
+                renderer.domElement.style.cursor =
+                    "pointer";
+
+                const zone =
+                    intersections[0].object.userData.zone;
+
+                hoveredZone = zone;
+
+            } else {
+
+                renderer.domElement.style.cursor =
+                    "default";
+
+                hoveredZone = null;
+
+            }
+
+        }
+    );
+
+
+    /* ============================================
+       CLICK
+    ============================================ */
+
+    renderer.domElement.addEventListener(
+        "pointerdown",
+        event => {
+
+            updatePointer(event);
+
+            const intersections =
+                raycaster.intersectObjects(
+                    hotspotMeshes
+                );
+
+            if (intersections.length === 0) {
+                return;
+            }
+
+            const zone =
+                intersections[0].object.userData.zone;
+
+            showZone(zone);
+
+        }
+    );
+
+
+    /* ============================================
+       SHOW SELECTED ZONE
+    ============================================ */
+
+    function showZone(zone) {
+
+        const result =
+            document.getElementById("result");
+
+        let html = `
+            <h2>${zone.name}</h2>
+
+            <p>
+                Possible explanations associated
+                with pain in this area include:
+            </p>
+
+            <ul>
+        `;
+
+        zone.causes.forEach(cause => {
+
+            html += `
+                <li>${cause}</li>
+            `;
+
+        });
+
+        html += `
+            </ul>
+
+            <p class="hint">
+                This information is educational and
+                does not provide a diagnosis.
+            </p>
+        `;
+
+        result.innerHTML = html;
+
+    }
+
+
+    /* ============================================
+       RESIZE
+    ============================================ */
+
+    window.addEventListener(
+        "resize",
+        () => {
+
+            camera.aspect =
+                viewer.clientWidth /
+                viewer.clientHeight;
+
+            camera.updateProjectionMatrix();
+
+            renderer.setSize(
+                viewer.clientWidth,
+                viewer.clientHeight
+            );
+
+        }
+    );
+
+
+    /* ============================================
+       ANIMATION
+    ============================================ */
+
+    function animate() {
+
+        requestAnimationFrame(
+            animate
+        );
+
+        controls.update();
+
+        renderer.render(
+            scene,
+            camera
+        );
+
+    }
+
+    animate();
+
+    </script>
+</body>
+</html>

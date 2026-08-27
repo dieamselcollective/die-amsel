@@ -1,0 +1,39 @@
+die-amsel/
+|-- CNAME
+|-- GOOGLE_SHEETS_QUICK_REF.md
+|-- GOOGLE_SHEETS_SETUP.md
+|-- GOOGLE_SHEETS_UPDATE.md
+|-- IMPROVEMENTS.md
+|-- MAINTENANCE.md
+|-- PROJECT_SUMMARY.md
+|-- QUICK_START.md
+|-- README.md
+|-- README_CHANGES.md
+|-- README_DOCUMENTATION.md
+|-- SETUP_GUIDE.md
+|-- VISUAL_GUIDE.md
+|-- assets/
+|   `-- images/
+|       |-- alexander-krivitskiy-rkc85-g-3iE-unsplash.jpg
+|       |-- eye-painting.jpg
+|       |-- flower-orange.jpg
+|       |-- flower-pink.jpg
+|       |-- giu-vicente-L2s3fM9jU20-unsplash.jpg
+|       |-- globe-hands.jpg
+|       |-- hands.jpg
+|       |-- ihor-vgmhEP8ffzA-unsplash.jpg
+|       |-- jane-Dw2ablr-JPo-unsplash.jpg
+|       |-- jannes-jacobs-pMQgDg_8z88-unsplash.jpg
+|       |-- logo.png
+|       |-- monika-kozub-9Evqbiy9Lj8-unsplash.jpg
+|       |-- pencil-bg.jpg
+|       |-- tabitha-turner--ip6OUqG5WY-unsplash.jpg
+|       `-- timothy-dykes-J2iliIecHJ4-unsplash.jpg
+|-- gdpr.html
+|-- imprint.html
+|-- index.html
+|-- privacy-policy.html
+|-- repo-tree.txt
+|-- robots.txt
+|-- sitemap.xml
+`-- style.css
